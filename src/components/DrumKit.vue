@@ -1,75 +1,85 @@
 <template>
   <div class="drum-kit">
     <h2>Drum kit</h2>
-      <div class="container">
-        <div>
+      <div class="keys">
+        <div class="key">
         <button
           @click.prevent="playSound('http://soundbible.com/mp3/Bike Horn-SoundBible.com-602544869.mp3')"
           >
-          A
+        <kbd>A</kbd>
+        <span class="sound">stars</span>
         </button>
       </div>
-      <div>
+      <div class="key">
         <button
           @click.prevent="playSound('http://soundbible.com/mp3/Accordion-SoundBible.com-74362576.mp3')"
           >
-          S
+        <kbd>S</kbd>
+        <span class="sound">trumppet</span>
         </button>
       </div>
-      <div>
+      <div class="key">
         <button
         @click.prevent="playSound('http://soundbible.com/mp3/front-desk-bells-daniel_simon.mp3')"
         >
-          D
+        <kbd>D</kbd>
+        <span class="sound">dream</span>
         </button>
       </div>
-      <div>
+      <div class="key">
         <button
         @click.prevent="playSound('http://soundbible.com/mp3/Judges Gavel-SoundBible.com-1321455227.mp3')"
         >
-          F
+        <kbd>F</kbd>
+        <span class="sound">accordion</span>
         </button>
       </div>
-      <div>
+      <div class="key">
         <button
         @click.prevent="playSound('http://soundbible.com/mp3/Music_Box-Big_Daddy-1389738694.mp3')"
         >
-          G
+        <kbd>G</kbd>
+        <span class="sound">bell</span>
         </button>
       </div>
-      <div>
+      <div class="key">
         <button
         @click.prevent="playSound('http://soundbible.com/mp3/Temple Bell Bigger-SoundBible.com-1940249027.mp3')"
         >
-          H
+        <kbd>H</kbd>
+        <span class="sound">shoot</span>
         </button>
       </div>
-      <div>
+      <div class="key">
         <button
         @click.prevent="playSound('http://soundbible.com/mp3/killdeer_song-Mike_Koenig-1144525481.mp3')"
         >
-          J
+        <kbd>J</kbd>
+        <span class="sound">box</span>
         </button>
       </div>
-      <div>
+      <div class="key">
         <button
         @click.prevent="playSound('http://soundbible.com/mp3/Coin_Drop-Willem_Hunt-569197907.mp3')"
         >
-          K
+        <kbd>K</kbd>
+        <span class="sound">bum</span>
         </button>
       </div>
-      <div>
+      <div class="key">
         <button
         @click.prevent="playSound('http://soundbible.com/mp3/Demon_Girls_Mockingbir-Hello-1365708396.mp3')"
         >
-          L
+        <kbd>L</kbd>
+        <span class="sound">whistle</span>
         </button>
       </div>
-      <div>
+      <div class="key">
         <button
         @click.prevent="playSound('http://soundbible.com/mp3/Tinkle-Lisa_Redfern-1916445296.mp3')"
         >
-          Ñ
+        <kbd>Ñ</kbd>
+        <span class="sound">coins</span>
         </button>
       </div>
     </div>
@@ -97,7 +107,7 @@ export default {
   },
   created() {
     window.addEventListener('keydown', (e) => {
-      if (`data-key="${e.keyCode}"`) {
+      if (`data-key="${e.keyCode}"`) {        
         const link = this.sounds[e.keyCode]
         this.playSound(link)
       }
@@ -108,6 +118,8 @@ export default {
     playSound(sound) {
       if (sound) {
        const audio = new Audio(sound);
+       if (!audio) return;
+       audio.currentTime = 0;
        audio.play();
       }
     },
@@ -119,17 +131,64 @@ export default {
 <style scoped>
 
 .drum-kit {
-  background-image: url('../assets/drum-kit.jpg');
+  background-image: url('../assets/b9r5sEL.jpg');
   background-repeat: no-repeat;
   height: 750px ;
   width: 100%;
 }
 
-.container {
+/* }  */
+
+html {
+  font-size: 10px;
+  background-image: url('../assets/b9r5sEL.jpg');
+  bottom: center;
+  background-size: cover;
+}
+
+body,html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.keys {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-content: center;
+  flex: 1;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.key {
+  border: .4rem solid black;
+  border-radius: .5rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem .5rem;
+  transition: all .07s ease;
+  width: 10rem;
+  text-align: center;
+  color: white;
+  background: rgba(0,0,0,0.4);
+  text-shadow: 0 0 .5rem black;
+}
+
+.playing {
+  transform: scale(1.1);
+  border-color: #ffc600;
+  box-shadow: 0 0 1rem #ffc600;
+}
+
+kbd {
+  display: block;
+  font-size: 4rem;
+}
+
+.sound {
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  color: #ffc600;
 }
 
 </style>
