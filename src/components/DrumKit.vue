@@ -174,11 +174,11 @@ body,html {
   text-shadow: 0 0 .5rem black;
 }
 
-.playing {
+/* .playing {
   transform: scale(1.1);
   border-color: #ffc600;
   box-shadow: 0 0 1rem #ffc600;
-}
+} */
 
 kbd {
   display: block;
