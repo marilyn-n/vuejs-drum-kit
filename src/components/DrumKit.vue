@@ -1,7 +1,7 @@
 <template>
   <div class="drum-kit">
-    <h2>Drum kit</h2>
-      <div class="keys">
+    <h1>JS Drumkit</h1>
+      <div class="container__keys">
         <div class="key">
         <button
           @click.prevent="playSound('http://soundbible.com/mp3/Tinkle-Lisa_Redfern-1916445296.mp3')"
@@ -128,13 +128,20 @@ export default {
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 .drum-kit {
   background-image: url('../assets/b9r5sEL.jpg');
   background-repeat: no-repeat;
-  height: 750px ;
+  height: 100%;
   width: 100%;
+  margin: 0;
+  h1 {
+    font-size: 50px;
+    color: palevioletred;
+    font-weight: bolder;
+    margin: 0;
+  }
 }
 
 html {
@@ -142,6 +149,8 @@ html {
   background-image: url('../assets/b9r5sEL.jpg');
   bottom: center;
   background-size: cover;
+  margin: 0;
+  
 }
 
 body,html {
@@ -150,12 +159,17 @@ body,html {
   font-family: sans-serif;
 }
 
-.keys {
+.container {
   display: flex;
-  flex: 1;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
+  &__keys {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .key {
